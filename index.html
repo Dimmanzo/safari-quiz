@@ -24,7 +24,39 @@
 </head>
 
 <body>
+    <header>
+        <img src="assets/images/logo.png" alt="Safari Quiz Logo">
+        <h1>Safari Quiz</h1>
+    </header>
 
+    <!-- Username Input -->
+    <div class="username-container">
+        <label for="username">Enter your username:</label>
+        <input type="text" id="username" placeholder="Your username...">
+        <button id="start-btn">Start Game</button>
+    </div>
+
+    <!-- Game Content -->
+    <div id="game-container" style="display: none;">
+        <h2>Welcome, <span id="username-display"></span>!</h2>
+        <p>Test your knowledge of wildlife in this fun Safari Quiz!</p>
+        <!-- Questions and Options -->
+        <div id="question-container">
+            <p id="question">Question goes here...</p>
+            <ul id="options">
+                <li class="option">Option 1</li>
+                <li class="option">Option 2</li>
+                <li class="option">Option 3</li>
+                <li class="option">Option 4</li>
+            </ul>
+        </div>
+        <!-- Score -->
+        <div id="score-container">
+            <p>Score: <span id="score">0</span></p>
+        </div>
+    </div>
+
+    <script src="assets/js/game.js"></script>
 </body>
 
 </html>
