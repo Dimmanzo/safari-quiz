@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener for the Start Game button
     document.getElementById("start-btn").addEventListener("click", startGame);
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("username").focus();
 
     // Pressing 'Enter' key continues to the game
-    document.getElementById("username").addEventListener("keydown", function(event) {
+    document.getElementById("username").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             startGame();
         }
@@ -80,7 +80,7 @@ function displayQuestion() {
     // Get all the option elements and select a random index for the correct option
     const options = document.getElementsByClassName("option");
     const correctOptionIndex = Math.floor(Math.random() * options.length);
-    
+
     // Loop through all options, set their text and data
     for (let i = 0; i < options.length; i++) {
         if (i === correctOptionIndex) {
@@ -95,7 +95,7 @@ function displayQuestion() {
             do {
                 otherAnimal = animals[Math.floor(Math.random() * animals.length)];
             } while (otherAnimal.name === selectedAnimal.name);
-            
+
             options[i].innerText = otherAnimal.name;
             options[i].dataset.correct = "false";
         }
@@ -104,4 +104,25 @@ function displayQuestion() {
 
 function checkAnswer(event) {
 
+    // Check if selected option is correct
+    let selectedAnimal = event.target;
+    let isCorrect = selectedAnimal.dataset.correct === "true";
+
+    if (isCorrect) {
+
+        // Display a message and +1 the correct score in answer is correct
+        alert("Correct! Well done!");
+        let score = parseInt(document.getElementById("score").innerText);
+        document.getElementById("score").innerText = ++score;
+    } else {
+
+        // Display a message and +1 the incorrect score in answer is incorrect
+        alert(`Incorrect! The correct answer was ${document.querySelector('.option[data-correct="true"]').innerText}`);
+        let incorrect = parseInt(document.getElementById("incorrect").innerText);
+        document.getElementById("incorrect").innerText = ++incorrect;
+    }
+
+    // Display the next question
+    displayQuestion();
 }
+
