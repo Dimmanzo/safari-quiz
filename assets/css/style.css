@@ -1,0 +1,77 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Header */
+
+header {
+    padding: 1rem;
+}
+
+.logo {
+    height: 10rem;
+}
+
+/* Index page content */
+.username-container {
+    margin: auto;
+}
+
+.username-container label, button {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+}
+
+.username-container button {
+    width: 50%;
+    max-width: 100px;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Game content */
+#game-container {
+    padding: 1rem;
+}
+
+#animal-image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+#options {
+    list-style: none;
+    padding: 0;
+}
+
+.option {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    cursor: pointer;
+}
+
+.score-area {
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    width: 100%;
+    margin-top: auto;
+}

@@ -25,24 +25,24 @@
 
 <body>
     <header>
-        <img src="assets/images/logo.png" alt="Safari Quiz Logo">
-        <h1>Safari Quiz</h1>
+        <img class="logo" src="assets/images/logo.png" alt="Safari Quiz Logo">
     </header>
 
     <!-- Username Input -->
     <div class="username-container">
         <label for="username">Enter your username:</label>
-        <input type="text" id="username" placeholder="Your username...">
+        <input type="text" id="username">
         <button id="start-btn">Start Game</button>
     </div>
 
     <!-- Game Content -->
-    <div id="game-container" style="display: none;">
+    <div id="game-container">
         <h2>Welcome, <span id="username-display"></span>!</h2>
         <p>Test your knowledge of wildlife in this fun Safari Quiz!</p>
+        <div id="animal-image"></div>
         <!-- Questions and Options -->
         <div id="question-container">
-            <p id="question">Question goes here...</p>
+            <p id="question">Question</p>
             <ul id="options">
                 <li class="option">Option 1</li>
                 <li class="option">Option 2</li>
@@ -51,11 +51,15 @@
             </ul>
         </div>
         <!-- Score -->
-        <div id="score-container">
-            <p>Score: <span id="score">0</span></p>
+        <div class="score-area">
+            <p class="scores">Correct Answers: <span id="score">0</span></p>
+            <p class="scores">Incorrect Answers: <span id="incorrect">0</span></p>
         </div>
     </div>
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Safari Quiz.</p>
+    </footer>
     <script src="assets/js/game.js"></script>
 </body>
 
