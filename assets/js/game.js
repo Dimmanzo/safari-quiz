@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let option of options) {
         option.addEventListener("click", checkAnswer);
     }
+
+    // When index page is opened, automatically focused on input box
+    document.getElementById("username").focus();
+
+    // Pressing 'Enter' key continues to the game
+    document.getElementById("username").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            startGame();
+        }
+    })
 })
 
 function startGame() {
