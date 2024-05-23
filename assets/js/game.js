@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener for the Start Game button
     document.getElementById("start-btn").addEventListener("click", startGame);
 
-    // Event Lisntener for all answer options
+    // Event Listener for all answer options
     let options = document.getElementsByClassName("option");
     for (let option of options) {
         option.addEventListener("click", checkAnswer);
@@ -43,7 +43,7 @@ function startGame() {
 function displayQuestion() {
 
     // List of animals
-    let animals = [
+    const animals = [
         { name: "African Elephant", image: "assets/images/african-elephant.png" },
         { name: "African Grey Hornbill", image: "assets/images/african-grey-hornbill.png" },
         { name: "African Lion", image: "assets/images/african-lion.png" },
@@ -103,26 +103,57 @@ function displayQuestion() {
 }
 
 function checkAnswer(event) {
+    // Get all the option elements
+    const options = document.getElementsByClassName("option");
 
     // Check if selected option is correct
     let selectedAnimal = event.target;
     let isCorrect = selectedAnimal.dataset.correct === "true";
 
+    // Loop through all options to apply the appropriate style
+    for (let option of options) {
+        if (option.dataset.correct === "true") {
+            option.style.backgroundColor = "green";
+            option.style.color = "white";
+        } else {
+            option.style.backgroundColor = "red";
+            option.style.color = "white";
+        }
+
+        // Disable further clicks on the options
+        option.removeEventListener("click", checkAnswer);
+    }
+
     if (isCorrect) {
 
-        // Display a message and +1 the correct score in answer is correct
-        alert("Correct! Well done!");
+        // +1 the correct score in answer is correct
         let score = parseInt(document.getElementById("score").innerText);
         document.getElementById("score").innerText = ++score;
     } else {
 
-        // Display a message and +1 the incorrect score in answer is incorrect
-        alert(`Incorrect! The correct answer was ${document.querySelector('.option[data-correct="true"]').innerText}`);
+        // +1 the incorrect score in answer is incorrect
         let incorrect = parseInt(document.getElementById("incorrect").innerText);
         document.getElementById("incorrect").innerText = ++incorrect;
     }
 
-    // Display the next question
-    displayQuestion();
+    // Display "Next question in 3 seconds..." message
+    const messageElement = document.getElementById("next");
+    messageElement.style.display = "block";
+
+    // Wait 3 seconds before displaying the next question
+    setTimeout(() => {
+        // Remove styles for the next question
+        for (let option of options) {
+            option.style.backgroundColor = "";
+            option.style.color = "";
+            option.addEventListener("click", checkAnswer);
+        }
+
+        // Hide the message
+        messageElement.style.display = "none";
+
+        // Display the next question
+        displayQuestion();
+    }, 3000);
 }
 
