@@ -81,6 +81,10 @@ function displayQuestion() {
     const options = document.getElementsByClassName("option");
     const correctOptionIndex = Math.floor(Math.random() * options.length);
 
+    // Array to store used animal names
+    let usedAnimals = [];
+    usedAnimals.push(selectedAnimal.name); 
+
     // Loop through all options, set their text and data
     for (let i = 0; i < options.length; i++) {
         if (i === correctOptionIndex) {
@@ -94,10 +98,11 @@ function displayQuestion() {
             let otherAnimal;
             do {
                 otherAnimal = animals[Math.floor(Math.random() * animals.length)];
-            } while (otherAnimal.name === selectedAnimal.name);
+            } while (usedAnimals.includes(otherAnimal.name));
 
             options[i].innerText = otherAnimal.name;
             options[i].dataset.correct = "false";
+            usedAnimals.push(otherAnimal.name);
         }
     }
 }
@@ -142,6 +147,7 @@ function checkAnswer(event) {
 
     // Wait 3 seconds before displaying the next question
     setTimeout(() => {
+
         // Remove styles for the next question
         for (let option of options) {
             option.style.backgroundColor = "";
