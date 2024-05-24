@@ -1,3 +1,6 @@
+// Global array to track used animals
+let usedAnimals = [];
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener for the Start Game button
@@ -20,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 })
 
+
+/**
+ * Starts the game by getting the player's username and displaying the game interface. 
+ * It ensures the username is not empty, hides the username input container, shows the game container, 
+ * and displays the first question.
+ */
 function startGame() {
 
     // Username entered by user
@@ -31,6 +40,9 @@ function startGame() {
         return;
     }
 
+    // Clear used animals at the start of each game
+    usedAnimals = [];
+
     // Hides username input container, shows the game and displays user username.
     document.getElementById("username-display").innerText = username;
     document.getElementsByClassName("username-container")[0].style.display = "none";
@@ -40,6 +52,12 @@ function startGame() {
     displayQuestion();
 }
 
+
+/**
+ * Displays a new question with multiple options. 
+ * Randomly selects an animal image, and sets up the answer options. 
+ * Makes sure that the right answer and the other choices aren't the same as the ones seen before.
+ */
 function displayQuestion() {
 
     // List of animals
@@ -70,43 +88,62 @@ function displayQuestion() {
         { name: "Thomsons Gazelle", image: "assets/images/thomsons-gazelle.png" }
     ];
 
-    // Selects random animal from the list
-    let randomAnimal = Math.floor(Math.random() * animals.length);
-    let selectedAnimal = animals[randomAnimal];
+    // Resets the used animals list if all animal have been used
+    if (usedAnimals.length === animals.length) {
+        usedAnimals = [];
+    }
+
+    // Selects a unique animal from the list
+    let selectedAnimal;
+    do {
+        selectedAnimal = animals[Math.floor(Math.random() * animals.length)];
+    } while (usedAnimals.includes(selectedAnimal.name));
+
+    // Adds selected animal to the used animals list
+    usedAnimals.push(selectedAnimal.name);
 
     // Sets image to the selected animal
     document.getElementById("animal-image").src = selectedAnimal.image;
 
-    // Get all the option elements and select a random index for the correct option
+    // Select a random index for the correct option
     const options = document.getElementsByClassName("option");
     const correctOptionIndex = Math.floor(Math.random() * options.length);
 
-    // Array to store used animal names
-    let usedAnimals = [];
-    usedAnimals.push(selectedAnimal.name); 
+    // Array to track used option names for the current question
+    let usedOptionNames = new Set();
+    usedOptionNames.add(selectedAnimal.name);
 
-    // Loop through all options, set their text and data
+    // Assign names to options and mark the correct one
     for (let i = 0; i < options.length; i++) {
         if (i === correctOptionIndex) {
 
-            // Set the correct options text and mark it as correct
+            // Set the correct option
             options[i].innerText = selectedAnimal.name;
             options[i].dataset.correct = "true";
         } else {
 
-            // Set the incorrect options text and mark them as incorrect
+            // Set the incorrect options
             let otherAnimal;
             do {
                 otherAnimal = animals[Math.floor(Math.random() * animals.length)];
-            } while (usedAnimals.includes(otherAnimal.name));
+            } while (usedOptionNames.has(otherAnimal.name));
+
+            // Add the selected other animal name
+            usedOptionNames.add(otherAnimal.name);
 
             options[i].innerText = otherAnimal.name;
             options[i].dataset.correct = "false";
-            usedAnimals.push(otherAnimal.name);
         }
     }
 }
 
+
+/**
+ * Checks the selected answer after player picks one. 
+ * Updates the score based on whether the answer is correct or incorrect. 
+ * Highlights the correct and incorrect answers, disables further clicks on options, 
+ * Displays the next question after a delay.
+ */
 function checkAnswer(event) {
     // Get all the option elements
     const options = document.getElementsByClassName("option");
