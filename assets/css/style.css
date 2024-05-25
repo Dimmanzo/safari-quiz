@@ -83,6 +83,17 @@ button {
     color: red;
 }
 
+#end-screen {
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* Footer */
 footer {
     background-color: black;

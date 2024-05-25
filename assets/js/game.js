@@ -1,5 +1,6 @@
-// Global array to track used animals
+// Global array to track used animals and question count
 let usedAnimals = [];
+let questionCount = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -20,9 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.key === "Enter") {
             startGame();
         }
-    })
-})
-
+    });
+});
 
 /**
  * Starts the game by getting the player's username and displaying the game interface. 
@@ -40,8 +40,9 @@ function startGame() {
         return;
     }
 
-    // Clear used animals at the start of each game
+    // Clear used animals and reset question count at the start of each game
     usedAnimals = [];
+    questionCount = 0;
 
     // Hides username input container, shows the game and displays user username.
     document.getElementById("username-display").innerText = username;
@@ -52,13 +53,18 @@ function startGame() {
     displayQuestion();
 }
 
-
 /**
  * Displays a new question with multiple options. 
  * Randomly selects an animal image, and sets up the answer options. 
  * Makes sure that the right answer and the other choices aren't the same as the ones seen before.
  */
 function displayQuestion() {
+
+    // Check if 10 questions have been asked
+    if (questionCount >= 10) {
+        endGame();
+        return;
+    }
 
     // List of animals
     const animals = [
@@ -135,8 +141,10 @@ function displayQuestion() {
             options[i].dataset.correct = "false";
         }
     }
-}
 
+    // +1 to question count
+    questionCount++;
+}
 
 /**
  * Checks the selected answer after player picks one. 
@@ -200,3 +208,23 @@ function checkAnswer(event) {
     }, 3000);
 }
 
+/**
+ * Ends the game by hiding the game container and displaying the final score.
+ */
+function endGame() {
+
+    // Hides game container
+    document.getElementById("game-container").style.display = "none";
+
+    // Calculates final score
+    let correctAnswers = parseInt(document.getElementById("score").innerText);
+    let incorrectAnswers = parseInt(document.getElementById("incorrect").innerText);
+    let totalScore = correctAnswers - incorrectAnswers;
+
+    // Final score message
+    const endMessage = `Game Over! Your Score: ${totalScore} (Correct: ${correctAnswers}, Incorrect: ${incorrectAnswers})`;
+    const endScreen = document.createElement("div");
+    endScreen.id = "end-screen";
+    endScreen.innerHTML = `<h2>${endMessage}</h2>`;
+    document.body.appendChild(endScreen);
+}
