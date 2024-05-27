@@ -91,11 +91,11 @@ The game tracks your score and, at the end (after 10 questions), you will see yo
 - JavaScript
 
   - No errors were found when passing through the
-  ![JSHint](https://github.com/Dimmanzo/culinary-academy/blob/main/media/jshint.png)
+  ![JSHint](https://github.com/Dimmanzo/safari-quiz/blob/main/media/jshint.png)
 
 - Lighthouse testing.
 
-  - ![Home](https://github.com/Dimmanzo/culinary-academy/blob/main/media/lighthouse.png)
+  - ![Home](https://github.com/Dimmanzo/safari-quiz/blob/main/media/lighthouse.png)
 
 
 ## Deployment
