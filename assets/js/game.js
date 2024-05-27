@@ -205,7 +205,7 @@ function checkAnswer(event) {
 
         // Display the next question
         displayQuestion();
-    }, 10);
+    }, 3000);
 }
 
 /**
