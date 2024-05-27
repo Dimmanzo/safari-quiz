@@ -205,7 +205,7 @@ function checkAnswer(event) {
 
         // Display the next question
         displayQuestion();
-    }, 3000);
+    }, 10);
 }
 
 /**
@@ -227,4 +227,40 @@ function endGame() {
     endScreen.id = "end-screen";
     endScreen.innerHTML = `<h2>${endMessage}</h2>`;
     document.body.appendChild(endScreen);
+
+    // Creates and adds the Play Again button
+    const playAgainButton = document.createElement("button");
+    playAgainButton.innerText = "Play Again";
+    playAgainButton.addEventListener("click", restartGame);
+    endScreen.appendChild(playAgainButton);
+
+    // Appends the end screen to the body
+    document.body.appendChild(endScreen);
+}
+
+/**
+ * Resets score, starts a new game with the same username.
+ */
+function restartGame() {
+    // Resets scores
+    document.getElementById("score").innerText = "0";
+    document.getElementById("incorrect").innerText = "0";
+
+    // Removes end screen
+    const endScreen = document.getElementById("end-screen");
+    if (endScreen) {
+        document.body.removeChild(endScreen);
+    }
+
+    // Reset used animals array
+    usedAnimals = [];
+
+    // Resets question count
+    questionCount = 0;
+
+    // Shows game container
+    document.getElementById("game-container").style.display = "block";
+
+    // Starts a new game
+    displayQuestion();
 }
