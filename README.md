@@ -31,7 +31,7 @@
 
   - Once you've answered 10 questions, the game-container will disappear, an end-screen will pop up. Here, you'll find a "Game Over" message displaying your total score, correct and incorrect answers number. Below this, a "Play Again" button will be available. Pressing this button will restart the game from the beginning.
 
-![End Game](https://github.com/Dimmanzo/safari-quiz/blob/main/media/game-2.png)  
+![End Game](https://github.com/Dimmanzo/safari-quiz/blob/main/media/end-game.png)  
 
 ## Testing 
 
