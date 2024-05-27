@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function startGame() {
 
     // Username entered by user
-    let username = document.getElementById("username").value;
+    const username = document.getElementById("username").value;
 
     // Check if username input is empty
     if (username === "") {
@@ -116,7 +116,7 @@ function displayQuestion() {
     const correctOptionIndex = Math.floor(Math.random() * options.length);
 
     // Array to track used option names for the current question
-    let usedOptionNames = new Set();
+    const usedOptionNames = new Set();
     usedOptionNames.add(selectedAnimal.name);
 
     // Assign names to options and mark the correct one
@@ -217,9 +217,9 @@ function endGame() {
     document.getElementById("game-container").style.display = "none";
 
     // Calculates final score
-    let correctAnswers = parseInt(document.getElementById("score").innerText);
-    let incorrectAnswers = parseInt(document.getElementById("incorrect").innerText);
-    let totalScore = correctAnswers - incorrectAnswers;
+    const correctAnswers = parseInt(document.getElementById("score").innerText);
+    const incorrectAnswers = parseInt(document.getElementById("incorrect").innerText);
+    const totalScore = correctAnswers - incorrectAnswers;
 
     // Final score message
     const endMessage = `Game Over! Your Score: ${totalScore} (Correct: ${correctAnswers}, Incorrect: ${incorrectAnswers})`;

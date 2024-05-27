@@ -3,8 +3,8 @@
 [View live project here!](https://dimmanzo.github.io/safari-quiz/)
 
 - Safari Quiz is a web-based game that tests your knowledge of various safari animals. 
-- You'll be shown an image of an animal and you must choose the correct name from one of the four provided answers. 
-- The game tracks your score and, at the end (after 10 questions), you will see your total score.
+You'll be shown an image of an animal and you must choose the correct name from one of the four provided answers.  
+The game tracks your score and, at the end (after 10 questions), you will see your total score.
 
 ![Responsive Mockup](https://github.com/Dimmanzo/safari-quiz/blob/main/media/responsive.png)
 
@@ -33,11 +33,28 @@
 
 ![End Game](https://github.com/Dimmanzo/safari-quiz/blob/main/media/end-game.png)  
 
+### Features to be added
+
+- "Next question in 3 seconds..."
+  - Implement a countdown timer to this message.
+
+- Leaderboard
+  - Add a leaderboard with high scores.
+
 ## Testing 
 
 | Action  | Result | Pass or Fail  |
 | :-: | :-: | :-: |
-|  |  | ✅ |
+| Open home page | Focus on username input | ✅ |
+| Start the game with empty username input | Please enter username alert | ✅ |
+| Enter username press on "Start Game" or press "Enter Key" | Game starts | ✅ |
+| Click on one of the options | Show correct and incorrect options | ✅ |
+| Click on one of the options | Add +1 to one of the scores | ✅ |
+| Click on one of the options | Skips to the next question in 3 seconds | ✅ |
+| While question is changing click on one of the options | Click is not counted | ✅ |
+| Answer 10th question | Game finishes, pops up total score with correct and incorrect answer count | ✅ |
+| Press on "Play Again" button at the end game | Starts a new game with the same username | ✅ |
+
 
 - All functions of the website have been thoroughly tested on various screen sizes and to ensure seamless performance across different devices.
 - All functions of the website have been tested across multiple browsers, including: Google Chrome, Microsoft Edge, Mozilla Firefox, Opera.
@@ -63,15 +80,22 @@
 
 - HTML
 
-  - Home page - no errors found when passing through the [W3C validator]()
+  - No errors were found when passing through the 
+  [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimmanzo.github.io%2Fsafari-quiz%2F)
 
 - CSS
 
-  - No errors were found when passing through the [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdimmanzo.github.io%2Fsafari-quiz%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#warnings)
+  - No errors were found when passing through the 
+  [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdimmanzo.github.io%2Fsafari-quiz%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#warnings)
+
+- JavaScript
+
+  - No errors were found when passing through the
+  ![JSHint](https://github.com/Dimmanzo/culinary-academy/blob/main/media/jshint.png)
 
 - Lighthouse testing.
 
-  - [Home page](https://github.com/Dimmanzo/culinary-academy/blob/main/media/lighthouse.png)
+  - ![Home](https://github.com/Dimmanzo/culinary-academy/blob/main/media/lighthouse.png)
 
 
 ## Deployment
